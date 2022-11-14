@@ -1,1 +1,1 @@
-# VBI_UMAP
+# VBI-UMAP
