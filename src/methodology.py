@@ -12,6 +12,7 @@ def theoretical_clustering(data,
                            n_healthy,
                            n_mod,
                            n_large,
+                           dof_num,
                            n_components = 2, 
                            n_neighbors = 30, 
                            min_dist = 0, 
@@ -19,7 +20,7 @@ def theoretical_clustering(data,
                            set_op_mix_ratio=0.95, 
                            plot_flag=False,
                            print_flag=False,
-                           total_obs=5):
+                           total_obs=2):
     
 
     '''
@@ -43,6 +44,7 @@ def theoretical_clustering(data,
 
         if plot_flag:
             plt.figure()
+            plt.title(f'DOF NUMBER: {dof_num+1}, OBSERVATION: {i}/{total_obs}')
             plt.xlabel('X Magnitude')
             plt.ylabel('Y Magnitude')
             
@@ -87,6 +89,7 @@ def HDBSCAN_UMAP_Application(data,
                            n_healthy,
                            n_mod,
                            n_large,
+                           dof_num,
                            n_components = 2, 
                            n_neighbors = 30, 
                            min_dist = 0, 
@@ -125,6 +128,7 @@ def HDBSCAN_UMAP_Application(data,
 
         if plot_flag:
             plt.figure()
+            plt.title(f'DOF NUMBER: {dof_num+1}, OBSERVATION: {i}/{total_obs}')
             plt.xlabel('X Magnitude')
             plt.ylabel('Y Magnitude')
             

@@ -3,7 +3,6 @@ from scipy.fft import fft
 from numpy.random import permutation
 from sklearn.utils import resample
 
-
 def fft_feature_engineering(data_array, nfft):
     '''
     Refers to one observed car data point (one row of input file)
@@ -42,6 +41,12 @@ def bootstrap_sampling(data_array_ffts, sample_times=1000):
         data_bootstrap_samples.append(np.mean(data_array_ffts[idxs_resample,:], axis=0))
 
     return [np.array(data_bootstrap_samples)]
+
+
+def scale(data):
+    scaler = StandardScaler()
+    return
+
 
 
 
