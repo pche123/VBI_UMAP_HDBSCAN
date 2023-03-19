@@ -23,6 +23,6 @@ The code was written on a macOS Monterey Version 12.4.
 
 ## Quick Explanation
 
-The function ```HDBSCAN_UMAP_Application```, located in the ```methodology``` module, will be the main function to use for analysis. Ideally the code ill be pre-processed according to the Jupyter Notebook ```test```. In order to compare your results with the theoretical clustering results, you can call ```theoretical_clustering```, once again located in the ```methodology```` module. 
+The function ```HDBSCAN_UMAP_Application```, located in the ```methodology``` module, will be the main function to use for analysis. Ideally the code ill be pre-processed according to the Jupyter Notebook ```test```. In order to compare your results with the theoretical clustering results, you can call ```theoretical_clustering```, once again located in the ```methodology``` module. 
 
 
