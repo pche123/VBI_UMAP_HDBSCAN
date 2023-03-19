@@ -12,33 +12,17 @@ In particular we show this workflow sucessfully being implemented on a subset of
 
 ```
 TESTING
-aiohttp                       3.8.1
-aiosignal                     1.2.0
-alabaster                     0.7.12
-anaconda-client               1.9.0
-anaconda-navigator            2.2.0
-anaconda-project              0.10.2
-anyio                         3.5.0
-appdirs                       1.4.4
-applaunchservices             0.2.1
-appnope                       0.1.2
-appscript                     1.1.2
-argon2-cffi                   21.3.0
-argon2-cffi-bindings          21.2.0
-arrow                         1.2.2
-astroid                       2.6.6
-astropy                       5.0.4
-asttokens                     2.0.5
-async-timeout                 4.0.1
+python          3.9.12
+matplotlib      3.5.1
+hdbscan         0.8.29
+umap-learn      0.5.3           
+scikit-learn    1.0.2
 ```
 
-The code was tested on a Macbook....
+The code was written on a macOS Monterey Version 12.4.
 
-## Example Usage
+## Quick Explanation
 
-Function **XXXX** will be the main thing to call, and is available in folder etc ... etc.... 
+The function ```HDBSCAN_UMAP_Application```, located in the ```methodology``` module, will be the main function to use for analysis. Ideally the code ill be pre-processed according to the Jupyter Notebook ```test```. In order to compare your results with the theoretical clustering results, you can call ```theoretical_clustering```, once again located in the ```methodology```` module. 
 
-``` python
-main(x,y,z)
-```
 
