@@ -26,10 +26,14 @@ def theoretical_clustering(data,
     '''
     The theoretical grouping to expect, based on a supervised knowledge
     of which data is healthy, moderate damag, and large damage.
+    
+    Note that unlike HDBSCAN_UMAP_Application, min_cluster_size doesn't need
+    to be specified here, because we are considering the theoretical groupings
+    which are known ahead of time already. 
     '''
     
     n_data = data.shape[0]
-    cs = ['1']*n_healthy + ['2']*n_mod + ['3']*n_large # Theoretical Groupings
+    cs = ['1']*n_healthy + ['2']*n_mod + ['3']*n_large # Theoretical Groupings, cs="colours"
     umap_results = {}
     
     for i in range(1,total_obs+1):
@@ -113,9 +117,10 @@ def HDBSCAN_UMAP_Application(data,
     for i in range(1,total_obs+1):
         sub_data = data[0:n_data*i//total_obs,:]
 
-        # Use Manhattan --> higher dim
+        # Note that UMAP is applied to entire observed data set ==> we aren't cheating by
+        # knowing whether or not there is damage, and also how much types of damage there are etc.
         umap_obj = umap.UMAP(n_neighbors = n_neighbors, n_components = n_components, 
-                             min_dist = min_dist,metric='manhattan',
+                             min_dist = min_dist,metric=metric,
                              set_op_mix_ratio = set_op_mix_ratio, random_state=42).fit(sub_data)
 
         data_points = umap_obj.transform(sub_data)
@@ -124,7 +129,6 @@ def HDBSCAN_UMAP_Application(data,
         clusterer = hdbscan.HDBSCAN(metric='euclidean', 
                                     prediction_data=True, 
                                     min_cluster_size = min_cluster_size).fit(data_points)
-
 
         if plot_flag:
             plt.figure()
@@ -142,7 +146,7 @@ def HDBSCAN_UMAP_Application(data,
             mod_label = None
             large_label = None
             outlier_label = -1
-                
+            
             if len(clusterer.labels_) <= n_healthy:
                  healthy_label = int(st.mode(clusterer.labels_)[0])
                     
