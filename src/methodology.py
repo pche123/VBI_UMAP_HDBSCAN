@@ -19,8 +19,7 @@ def theoretical_clustering(data,
                            metric = 'manhattan', 
                            set_op_mix_ratio=0.95, 
                            plot_flag=False,
-                           print_flag=False,
-                           total_obs=2):
+                           print_flag=False):
     
 
     '''
@@ -36,40 +35,38 @@ def theoretical_clustering(data,
     cs = ['1']*n_healthy + ['2']*n_mod + ['3']*n_large # Theoretical Groupings, cs="colours"
     umap_results = {}
     
-    for i in range(1,total_obs+1):
-        sub_data = data[0:n_data*i//total_obs,:]
-        sub_colours = list(map(int,cs))[0:n_data*i//total_obs] # string to int
 
-        umap_obj = umap.UMAP(n_neighbors = n_neighbors, n_components= n_components, 
-                             min_dist=min_dist,metric=metric,
-                             set_op_mix_ratio=set_op_mix_ratio, random_state=42).fit(sub_data)
-        
-        data_points = umap_obj.transform(sub_data)
 
-        if plot_flag:
-            plt.figure()
-            plt.title(f'DOF NUMBER: {dof_num+1}, OBSERVATION: {i}/{total_obs}')
-            plt.xlabel('X Magnitude')
-            plt.ylabel('Y Magnitude')
-            
-            DM00_flag = True
-            DM20_flag = True
-            DM40_flag = True
-            
-            # inefficient looping
-            for j, col in enumerate(sub_colours):
-                if col == 1:
-                    plt.scatter(data_points[j,0],data_points[j,1],c='g',edgecolors='k',s=150,alpha=0.7,
-                             label = 'DM00' if DM00_flag else None)
-                    DM00_flag = False
-                elif col == 2:
-                    plt.scatter(data_points[j,0],data_points[j,1],c='b',edgecolors='k',s=150,alpha=0.7,
-                            label = 'DM20' if DM20_flag else None)
-                    DM20_flag = False
-                else:
-                    plt.scatter(data_points[j,0],data_points[j,1],c='r',edgecolors='k',s=150,alpha=0.7,
-                            label = 'DM40' if DM40_flag else None)
-                    DM40_flag = False
+    umap_obj = umap.UMAP(n_neighbors = n_neighbors, n_components= n_components, 
+                         min_dist=min_dist,metric=metric,
+                         set_op_mix_ratio=set_op_mix_ratio, random_state=42).fit(sub_data)
+
+    data_points = umap_obj.transform(sub_data)
+
+    if plot_flag:
+        plt.figure()
+        plt.title(f'DOF NUMBER: {dof_num+1}')
+        plt.xlabel('X Magnitude')
+        plt.ylabel('Y Magnitude')
+
+        DM00_flag = True
+        DM20_flag = True
+        DM40_flag = True
+
+        # inefficient looping
+        for j, col in enumerate(cs):
+            if col == 1:
+                plt.scatter(data_points[j,0],data_points[j,1],c='g',edgecolors='k',s=150,alpha=0.7,
+                         label = 'DM00' if DM00_flag else None)
+                DM00_flag = False
+            elif col == 2:
+                plt.scatter(data_points[j,0],data_points[j,1],c='b',edgecolors='k',s=150,alpha=0.7,
+                        label = 'DM20' if DM20_flag else None)
+                DM20_flag = False
+            else:
+                plt.scatter(data_points[j,0],data_points[j,1],c='r',edgecolors='k',s=150,alpha=0.7,
+                        label = 'DM40' if DM40_flag else None)
+                DM40_flag = False
                     
             plt.legend()
             leg = plt.legend()
@@ -79,9 +76,9 @@ def theoretical_clustering(data,
                     
         if print_flag: print(f'{i}/{total_obs}')
         
-        umap_results[f'{i}_Umap_Object'] = umap_obj
-        umap_results[f'{i}_Sub_Data_Fit'] = sub_data
-        umap_results[f'{i}_Color_Labels'] = sub_colours
+    umap_results[f'{i}_Umap_Object'] = umap_obj
+    umap_results[f'{i}_Sub_Data_Fit'] = sub_data
+    umap_results[f'{i}_Color_Labels'] = sub_colours
         
     return umap_results
 
@@ -130,9 +127,11 @@ def HDBSCAN_UMAP_Application(data,
                                     prediction_data=True, 
                                     min_cluster_size = min_cluster_size).fit(data_points)
 
+        fig_list = []
         if plot_flag:
-            plt.figure()
-            plt.title(f'DOF NUMBER: {dof_num+1}, OBSERVATION: {i}/{total_obs}')
+            fig = plt.figure()
+            fig_list.append(fig)
+            plt.title(f'DOF NUMBER: {dof_num+1}')
             plt.xlabel('X Magnitude')
             plt.ylabel('Y Magnitude')
             
@@ -198,4 +197,4 @@ def HDBSCAN_UMAP_Application(data,
             print(f'{i}/{total_obs}')
             
     # Final Clustering and Label Allocations
-    return [hdbscan.all_points_membership_vectors(clusterer), clusterer.labels_]
+    return [hdbscan.all_points_membership_vectors(clusterer), clusterer.labels_, fig_list]
