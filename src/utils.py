@@ -39,6 +39,23 @@ def loadmat(filename):
     return _check_keys(data)
 
 
+def mkdir_p(mypath):
+    '''Creates a directory. equivalent to using mkdir -p on the command line
+    Taken from:
+    https://stackoverflow.com/questions/11373610/save-matplotlib-file-to-a-directory
+    '''
+
+    from errno import EEXIST
+    from os import makedirs,path
+
+    try:
+        makedirs(mypath)
+    except OSError as exc: # Python >2.5
+        if exc.errno == EEXIST and path.isdir(mypath):
+            pass
+        else: raise
+
+
 def read_data_fft(Bridge_Type, Damage_Location, Vehicle_Type, Bridge_Profile, 
                   Damage_Levels = ['DM00', 'DM20', 'DM40'], 
                   NUM_DATA_IN_DIR = 400 , 
