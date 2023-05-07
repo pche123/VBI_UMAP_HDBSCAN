@@ -11,18 +11,21 @@ In particular we show this workflow sucessfully being implemented on a subset of
 ## Required Libraries
 
 ```
-TESTING
 python          3.9.12
 matplotlib      3.5.1
 hdbscan         0.8.29
 umap-learn      0.5.3           
 scikit-learn    1.0.2
+scipy           1.7.3
+numpy           1.21.5
 ```
 
 The code was written on a macOS Monterey Version 12.4.
 
 ## Quick Explanation
 
-The function ```HDBSCAN_UMAP_Application```, located in the ```methodology``` module, will be the main function to use for analysis. Ideally the code ill be pre-processed according to the Jupyter Notebook ```test```. In order to compare your results with the theoretical clustering results, you can call ```theoretical_clustering```, once again located in the ```methodology``` module. 
+The function ```HDBSCAN_UMAP_Application```, located in the ```methodology``` module within the ```src``` folder, will be the main function to use for algorithm. However extra utility functions are located in the ```utils``` and ``` processing``` modules also.
+
+Example useage of these modules for the proposed data pipeline can be found in the ```notebooks``` folder, within the notebook file named: ```Example_Usage.ipnyb```. Further explanation, and a note on any assumptions made is also located in this notebook file.
 
 
