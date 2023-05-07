@@ -2,11 +2,13 @@ import scipy.io
 from .processing import fft_feature_engineering
 import numpy as np
 
-# https://stackoverflow.com/questions/11955000/how-to-preserve-matlab-struct-when-accessing-in-python
 def _check_keys( dict):
     """
     checks if entries in dictionary are mat-objects. If yes
     todict is called to change them to nested dictionaries
+    
+    Code Source:
+    https://stackoverflow.com/questions/11955000/how-to-preserve-matlab-struct-when-accessing-in-python
     """
     for key in dict:
         if isinstance(dict[key], scipy.io.matlab.mio5_params.mat_struct):
@@ -16,7 +18,10 @@ def _check_keys( dict):
 
 def _todict(matobj):
     """
-    A recursive function which constructs from matobjects nested dictionaries
+    A recursive function which constructs from matobjects nested dictionaries.
+    
+    Code Source:
+    https://stackoverflow.com/questions/11955000/how-to-preserve-matlab-struct-when-accessing-in-python
     """
     dict = {}
     for strg in matobj._fieldnames:
@@ -30,18 +35,24 @@ def _todict(matobj):
 
 def loadmat(filename):
     """
-    this function should be called instead of direct scipy.io .loadmat
+    This function should be called instead of direct scipy.io .loadmat
     as it cures the problem of not properly recovering python dictionaries
     from mat files. It calls the function check keys to cure all entries
     which are still mat-objects
+    
+    Code Source:
+    https://stackoverflow.com/questions/11955000/how-to-preserve-matlab-struct-when-accessing-in-python
     """
     data = scipy.io.loadmat(filename, struct_as_record=False, squeeze_me=True)
     return _check_keys(data)
 
 
 def mkdir_p(mypath):
-    '''Creates a directory. equivalent to using mkdir -p on the command line
+    '''
+    Creates a directory. equivalent to using mkdir -p on the command line
     Taken from:
+    
+    Code Source:
     https://stackoverflow.com/questions/11373610/save-matplotlib-file-to-a-directory
     '''
 
@@ -58,11 +69,17 @@ def mkdir_p(mypath):
 
 def read_data_fft(Bridge_Type, Damage_Location, Vehicle_Type, Bridge_Profile, 
                   Damage_Levels = ['DM00', 'DM20', 'DM40'], 
-                  NUM_DATA_IN_DIR = 400 , 
+                  NUM_DATA_IN_DIR = 800 , 
                   DATA_ROOT_LOC = 'data/', 
-                  NFFT=2**7):
+                  NFFT=2**9):
 
-    
+    '''
+    Uses the functions defined above to read the .mat files in from Python as a nested dictionary structure,
+    and then extract the relevant time series portion of the data. 
+
+    It then calls upon fft_engineering in the processing.py module and then proceedes to store this in a 
+    dictionary-type structure, nested by (1) DOF, and then (2) Damage Level.
+    '''
     if Vehicle_Type == 'V1':
         DOF = 2
     elif Vehicle_Type == 'V2':

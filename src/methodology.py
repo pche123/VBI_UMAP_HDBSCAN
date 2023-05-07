@@ -43,13 +43,14 @@ def HDBSCAN_UMAP_Application(data,
     
     
     
-    # Note that UMAP is applied to the entire observed data set for demonsrration purposes
+    # Note that UMAP is applied to the entire observed data set for demonstration purposes
     # Regardless we still don't know whether or not there is damage, 
-    # and also how many types of damage there are,nand at which point we transition 
+    # and also how many types of damage there are, and at which point we transition 
     # from DM00-->DM20-->DM40 etc. 
     
-    # This would be like applying a PCA to the entirety of some observed dataset, 
-    # and hoping that cluster information is sufficienly picked up. 
+    # Applying the embedding to a stack of data 
+    # would be like applying a PCA to the entirety of some observed dataset, 
+    # and hoping that useful cluster information is sufficienly found. 
     
     # More information is available here:
     
@@ -75,13 +76,14 @@ def HDBSCAN_UMAP_Application(data,
 
     
         
-    # THE FOLLOWING IS EXPERIMENTAL 
-    #       --> IT IS USED TO PROVIDE COLOR CONSISTENCY AND IN NO WAY EFFECTS THE ABOVE ALGORITHM
+    # THE FOLLOWING IS QUITE EXPERIMENTAL 
+    #       --> IT IS USED TO PROVIDE COLOR CONSISTENCY BETWEEN PLOTS AND IN NO WAY EFFECTS THE ABOVE ALGORITHM
     # Further Information:
     # The following is long because HDBSCAN randomly allocates cluster labels in no 
-    # particular order. In other words one cannot assume the DM00 is the first cluseter.
-    # Thus the following cose is used here to just try to make sure the 
-    # same colours for the same clusters are consistenly produced.e.g. DM00 --> green, DM40 --> red
+    # particular order. In other words one cannot assume the DM00 is always the first cluseter (index=0).
+    # Thus the following code is used here to just try to make sure the 
+    # same colours for the same clusters are consistenly produced.
+    # e.g. DM00 --> green, DM20 --> blue DM40 --> red (almost always)
     fig_list = []
     if plot_flag:
         fig = plt.figure()
