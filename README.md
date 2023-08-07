@@ -1,6 +1,6 @@
 # VBI_UMAP_HDBSCAN
 
-This repository is a python implentation of the code used to generate the images in the proposed paper to be published in the journal of Structural health monitoring under the title of "Numerical benchmark for road bridge damage detection from passing vehicles responses applied to four data-driven methods" for the section relying upon the usage of Uniform Manifold Approximation and Projection (UMAP), and Hierarchical Density-Based Spatial Clustering of Applications with Noise (HDBSCAN). 
+This repository is a python implentation of the code used to generate the images in the proposed paper to be published in the SAGE journal for Structural Health Monitoring under the title of "Numerical benchmark for road bridge damage detection from passing vehicles responses applied to four data-driven methods". This repo focuses primarily upon the section relying upon the usage of Uniform Manifold Approximation and Projection (UMAP), and Hierarchical Density-Based Spatial Clustering of Applications with Noise (HDBSCAN). 
 
 The primary workflow consisted of using UMAP to project the data to a lower dimensional space, and then relying upon HDBSCAN for non-parametric clustering. Although care should be taken in such a workflow since methods like t-SNE and UMAP are primarily used for the purpose of visualization in lower dimensional spaces, if one is careful with the pre-processing steps, UMAP has been noted to be able to used for such a purpose:
 
