@@ -6,7 +6,7 @@ The primary workflow consisted of using UMAP to project the data to a lower dime
 
 https://umap-learn.readthedocs.io/en/latest/clustering.html
 
-In particular we show this workflow sucessfully being implemented on a subset of data generated for the purpose of simulating vehicle bridge interaction (VBI). This data is publically available at: **XXXXXX**.
+In particular we show this workflow sucessfully being implemented on a subset of data generated for the purpose of simulating vehicle bridge interaction (VBI). This data is publically available at: https://zenodo.org/record/7741092 .
 
 ## Required Libraries
 
@@ -28,6 +28,5 @@ The function ```HDBSCAN_UMAP_Application```, located in the ```methodology``` mo
 
 Example useages of these modules for the proposed data pipeline can be found in the ```notebooks``` folder, within the notebook file named: ```Example_Usage.ipnyb```. Further explanation, and a note on any assumptions made is also located in this notebook file.
 
-The underlying dataset used for the analysis is located at the following link: https://zenodo.org/record/7741092
 
 
