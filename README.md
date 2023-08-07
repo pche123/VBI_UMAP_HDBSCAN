@@ -1,6 +1,6 @@
 # VBI_UMAP_HDBSCAN
 
-This repository presents a python implentation of the code used to generate the images in paper **XXXXX** for the section relying upon the usage of Uniform Manifold Approximation and Projection (UMAP), and Hierarchical Density-Based Spatial Clustering of Applications with Noise (HDBSCAN). 
+This repository is a python implentation of the code used to generate the images in the proposed paper to be published in the journal of Structural health monitoring under the title of "Numerical benchmark for road bridge damage detection from passing vehicles responses applied to four data-driven methods" for the section relying upon the usage of Uniform Manifold Approximation and Projection (UMAP), and Hierarchical Density-Based Spatial Clustering of Applications with Noise (HDBSCAN). 
 
 The primary workflow consisted of using UMAP to project the data to a lower dimensional space, and then relying upon HDBSCAN for non-parametric clustering. Although care should be taken in such a workflow since methods like t-SNE and UMAP are primarily used for the purpose of visualization in lower dimensional spaces, if one is careful with the pre-processing steps, UMAP has been noted to be able to used for such a purpose:
 
@@ -24,8 +24,10 @@ The code was written on a macOS Monterey Version 12.4.
 
 ## Quick Explanation
 
-The function ```HDBSCAN_UMAP_Application```, located in the ```methodology``` module within the ```src``` folder, will be the main function to use for algorithm. However extra utility functions are located in the ```utils``` and ``` processing``` modules also.
+The function ```HDBSCAN_UMAP_Application```, located in the ```methodology``` module within the ```src``` folder, is the main function to use for algorithm. However extra utility functions are located in the ```utils``` and ``` processing``` modules also.
 
-Example useage of these modules for the proposed data pipeline can be found in the ```notebooks``` folder, within the notebook file named: ```Example_Usage.ipnyb```. Further explanation, and a note on any assumptions made is also located in this notebook file.
+Example useages of these modules for the proposed data pipeline can be found in the ```notebooks``` folder, within the notebook file named: ```Example_Usage.ipnyb```. Further explanation, and a note on any assumptions made is also located in this notebook file.
+
+The underlying dataset used for the analysis is located at the following link: https://zenodo.org/record/7741092
 
 
